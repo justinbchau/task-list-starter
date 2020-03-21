@@ -68,9 +68,18 @@ const TaskList = () => {
                 );
               })}
             </List>
-            <Button component={Link} to={"/create"} className={classes.submit}>
-              Add Task
-            </Button>
+            <Link
+              to={"/create"}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <Button
+                type="submit"
+                variant="contained"
+                className={classes.submit}
+              >
+                Add Task
+              </Button>
+            </Link>
           </div>
         </Grid>
       </Grid>
@@ -89,7 +98,13 @@ const TaskList = () => {
             to={"/create"}
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            <Button className={classes.submit}>Add Task</Button>
+            <Button
+              type="submit"
+              variant="contained"
+              className={classes.submit}
+            >
+              Add Task
+            </Button>
           </Link>
         </Grid>
       </Grid>
