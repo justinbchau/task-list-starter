@@ -1,18 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { TaskContext } from "../context/TaskContext";
-import {
-  Button,
-  List,
-  Grid,
-  Typography,
-  ListItem,
-  ListItemText,
-  ListItemSecondaryAction,
-  IconButton
-} from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
+import { Button, List, Grid, Typography } from "@material-ui/core";
+
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import TaskItem from "./TaskItem";
+
+import taskApi from "../api/tasksApi";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -40,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 
 const TaskList = () => {
   const classes = useStyles();
-  const { tasks, removeTask } = useContext(TaskContext);
+  const { tasks } = useContext(TaskContext);
 
   return tasks.length ? (
     <div className={classes.root}>
@@ -52,20 +46,7 @@ const TaskList = () => {
           <div className={classes.demo}>
             <List>
               {tasks.map(task => {
-                return (
-                  <ListItem divider key={task.id}>
-                    <ListItemText primary={task.title} />
-                    <ListItemSecondaryAction>
-                      <IconButton
-                        edge="end"
-                        aria-label="delete"
-                        onClick={() => removeTask(task.id)}
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                );
+                return <TaskItem task={task} key={task.id} />;
               })}
             </List>
             <Link

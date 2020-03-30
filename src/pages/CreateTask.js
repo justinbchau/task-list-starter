@@ -35,12 +35,14 @@ const useStyles = makeStyles(theme => ({
 const CreateTask = () => {
   const { addTasks } = useContext(TaskContext);
   const classes = useStyles();
-  const [task, setTask] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   const handleSubmit = e => {
     e.preventDefault();
-    addTasks(task);
-    setTask("");
+    addTasks(title, description);
+    setTitle("");
+    setDescription("");
     history.push("/dashboard");
   };
 
@@ -57,12 +59,23 @@ const CreateTask = () => {
               variant="outlined"
               margin="normal"
               fullWidth
-              id="task"
-              label="Task Name"
-              name="task"
+              id="title"
+              label="Title"
+              name="title"
               autoFocus
-              value={task}
-              onChange={e => setTask(e.target.value)}
+              value={title}
+              onChange={e => setTitle(e.target.value)}
+              required
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="description"
+              label="Description"
+              name="description"
+              value={description}
+              onChange={e => setDescription(e.target.value)}
               required
             />
             <Button
